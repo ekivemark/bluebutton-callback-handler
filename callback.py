@@ -27,8 +27,8 @@ app = Flask(__name__)
 
 # This information is obtained upon registration of a new GitHub OAuth
 # application here: https://github.com/settings/applications/new
-client_id = "oG2OQvdkFwomSHrWK3KnPdCtNLqAaaTTctM1A6lQ"
-client_secret = "T4ByqUGZcrIREWrZfxsgmaidLu8MSTH7Wuoa9orwga4eiSBp108LShvkulyhRKaoP8xIAs8mydl6k70xvPn9rP8cfRFz97e1uFy3jLjFssu6wI7D0v7cMQk8BFh8292N"
+client_id = "<client_id>"
+client_secret = "<client_secret>"
 authorization_base_url = 'https://sandbox.bluebutton.cms.gov/v1/o/authorize/'
 token_url = 'https://sandbox.bluebutton.cms.gov/v1/o/token/'
 base_url = "https://sandbox.bluebutton.cms.gov"
