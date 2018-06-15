@@ -1,9 +1,14 @@
 # bluebutton-callback-handler
 simple server to handle callback from bluebutton sandbox using OAuth2.0
 
+Based on the following code examples:
+
+- http://requests-oauthlib.readthedocs.io/en/latest/examples/real_world_example.html
+- https://gist.github.com/ib-lundgren/6507798
+
 ## Install
 
-Create a virtualenv and install libraries
+- Create a virtualenv and install libraries
 
     mkdir demo
     cd demo
@@ -15,7 +20,6 @@ Create a virtualenv and install libraries
     # install supporting libraries
     pip install -r requirements.txt
 
-
 ## Register an app in the sandbox
 
 - Login to sandbox.bluebutton.cms.gov
@@ -23,7 +27,6 @@ Create a virtualenv and install libraries
   - Authorization Grant Type: authorization_code
   - Client Type: confidential
   - Redirect_Uri: http://localhost:8000/callback
-
 
 ## edit callback.py
 
@@ -39,6 +42,3 @@ Create a virtualenv and install libraries
 
 - Login to Medicare
 - Authorize your app
-
-
-
