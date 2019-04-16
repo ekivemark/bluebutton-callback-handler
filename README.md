@@ -8,7 +8,8 @@ Based on the following code examples:
 
 ## Install
 
-- Create a virtualenv and install libraries
+- Create a virtualenv and install librarie
+
 
     mkdir demo
     cd demo
@@ -19,7 +20,7 @@ Based on the following code examples:
     cd ./bluebutton-callback-handler
     # install supporting libraries
     pip install -r requirements.txt
-
+    
 ## Register an app in the sandbox
 
 - Login to sandbox.bluebutton.cms.gov
@@ -38,7 +39,7 @@ Based on the following code examples:
 
 ## Open a browser
 
-    http://localhost:8000/
+    http://localhost:8000
 
 - Login to Medicare
 - Authorize your app

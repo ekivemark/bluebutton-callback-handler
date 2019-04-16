@@ -27,8 +27,8 @@ app = Flask(__name__)
 
 # This information is obtained upon registration of a new GitHub OAuth
 # application here: https://github.com/settings/applications/new
-client_id = "<client_id>"
-client_secret = "<client_secret>"
+client_id = "GC68JoIs7VhXevfwSJ8uizaaOmetV7qq5iZh5iLl"
+client_secret = "BYlusC8jFFh6DEpGWH67LP2Dlrexdg1hyGSB0prbLb8HLyEIAGyiY5rfHLsZPBlN9jWb5IH2d894vRRcx2uL9GjkcXOukqdQ6U5empY2QVmBIU9sCP8YBxI3tlxug9ml"
 authorization_base_url = 'https://sandbox.bluebutton.cms.gov/v1/o/authorize/'
 token_url = 'https://sandbox.bluebutton.cms.gov/v1/o/token/'
 base_url = "https://sandbox.bluebutton.cms.gov"
@@ -42,7 +42,15 @@ def demo():
     using an URL with a few key OAuth parameters.
     """
     bluebutton = OAuth2Session(client_id)
-    authorization_url, state = bluebutton.authorization_url(authorization_base_url)
+
+
+    if 'oauth_state' in session:
+        print("Assigning saved state [%s] to state" % session['oauth_state'])
+        saved_state = session['oauth_state']
+    else:
+        saved_state = None
+
+    authorization_url, state = bluebutton.authorization_url(authorization_base_url, state=saved_state)
 
     # State is used to prevent CSRF, keep this for later.
     session['oauth_state'] = state
@@ -61,9 +69,26 @@ def callback():
     callback URL. With this redirection comes an authorization code included
     in the redirect URL. We will use that to obtain an access token.
     """
+    print("Callback GET:%s" % request.args.get)
+    print("Session State:%s" % session['oauth_state'])
+    print("New State:%s" % request.args.get('state'))
 
+    if session['oauth_state'] != request.args.get('state'):
+        print('\n========================================\n'
+              'WARNING: Saved State [%s] NOT returned via '
+              'callback [%s]\n'
+              '=========================================='
+              '\n' % (session['oauth_state'],
+                      request.args.get('state')))
+
+        session['previous_state'] = session['oauth_state']
+        print("Saving previous State:%s" % session['previous_state'])
+        session['oauth_state'] = request.args.get('state')
+        print("Updated oauth_state:%s" % session['oauth_state'])
 
     bluebutton = OAuth2Session(client_id, state=session['oauth_state'])
+
+    print("blubutton:%s" % bluebutton)
     token = bluebutton.fetch_token(token_url, client_secret=client_secret,
                                authorization_response=request.url)
 
