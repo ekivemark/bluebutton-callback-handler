@@ -8,8 +8,7 @@ Based on the following code examples:
 
 ## Install
 
-- Create a virtualenv and install librarie
-
+Create a virtualenv and install libraries:
 
     mkdir demo
     cd demo
@@ -20,6 +19,7 @@ Based on the following code examples:
     cd ./bluebutton-callback-handler
     # install supporting libraries
     pip install -r requirements.txt
+    
     
 ## Register an app in the sandbox
 
